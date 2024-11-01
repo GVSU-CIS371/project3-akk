@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Beverage :isIced="currentTemp === 'Cold'" />
+    <Beverage 
+  :isIced="currentTemp === 'Cold'" 
+  :beverage="currentBeverage" 
+  :creamer="currentCreamer" 
+  :syrup="currentSyrup" 
+/>
     <ul>
       <li>
         <template v-for="temp in temps" :key="temp">
@@ -17,12 +22,76 @@
         </template>
       </li>
     </ul>
+    <ul>
+      <li>
+        <template v-for="beverage in beverages" :key="beverage">
+          <label>
+            <input
+              type="radio"
+              name="beverage"
+              :id="`r${beverage}`"
+              :value="beverage"
+              v-model="currentBeverage"
+            />
+            {{ beverage }}
+          </label>
+        </template>
+      </li>
+    </ul>
+    <ul>
+        <li>
+          <template v-for="creamer in creamers" :key="creamer">
+            <label>
+              <input
+                type="radio"
+                name="creamer"
+                :id="`r${creamer}`"
+                :value="creamer"
+                v-model="currentCreamer"
+              />
+              {{ creamer }}
+            </label>
+          </template>
+        </li>
+      </ul>
+      <ul>
+      <li>
+        <template v-for="syrup in syrups" :key="syrup">
+          <label>
+            <input
+              type="radio"
+              name="syrup"
+              :id="`r${syrup}`"
+              :value="syrup"
+              v-model="currentSyrup"
+            />
+            {{ syrup }}
+          </label>
+        </template>
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import Beverage from "./components/Beverage.vue";
-import { temps, currentTemp } from "./stores/beverage";
+// Define reactive data
+
+const temps = ref(["Hot", "Cold"]);
+const currentTemp = ref("Hot");
+
+const beverages = ref(["Black Tea", "Green Tea", "Coffee"]);
+const currentBeverage = ref("Black Tea"); // Default selection
+
+const creamers = ref(["No Cream", "Milk", "Cream", "Half & Half"]);
+const currentCreamer = ref("No Cream"); // Default selection
+
+const syrups = ref(["No Syrup", "Vanilla", "Caramel", "Hazelnut"]);
+const currentSyrup = ref("No Syrup"); // Default selection
+
+
 </script>
 
 <style lang="scss">
@@ -38,5 +107,6 @@ html {
 }
 ul {
   list-style: none;
+  margin: 10px 0; // Adds vertical space between lists
 }
 </style>
