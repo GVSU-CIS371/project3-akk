@@ -1,11 +1,12 @@
 <template>
   <div>
     <Beverage 
-  :isIced="currentTemp === 'Cold'" 
-  :beverage="currentBeverage" 
-  :creamer="currentCreamer" 
-  :syrup="currentSyrup" 
-/>
+      :isIced="currentTemp === 'Cold'" 
+      :beverage="currentBeverage" 
+      :creamer="currentCreamer" 
+      :syrup="currentSyrup" 
+    />
+
     <ul>
       <li>
         <template v-for="temp in temps" :key="temp">
@@ -22,6 +23,7 @@
         </template>
       </li>
     </ul>
+
     <ul>
       <li>
         <template v-for="beverage in beverages" :key="beverage">
@@ -38,6 +40,7 @@
         </template>
       </li>
     </ul>
+
     <ul>
         <li>
           <template v-for="creamer in creamers" :key="creamer">
@@ -75,38 +78,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import Beverage from "./components/Beverage.vue";
-// Define reactive data
+  import { ref } from "vue";
+  import Beverage from "./components/Beverage.vue";
 
-const temps = ref(["Hot", "Cold"]);
-const currentTemp = ref("Hot");
+  const temps = ref(["Hot", "Cold"]);
+  const currentTemp = ref("Hot");
 
-const beverages = ref(["Black Tea", "Green Tea", "Coffee"]);
-const currentBeverage = ref("Black Tea"); // Default selection
+  const beverages = ref(["Black Tea", "Green Tea", "Coffee"]);
+  const currentBeverage = ref("Black Tea"); // Default selection
 
-const creamers = ref(["No Cream", "Milk", "Cream", "Half & Half"]);
-const currentCreamer = ref("No Cream"); // Default selection
+  const creamers = ref(["No Cream", "Milk", "Cream", "Half & Half"]);
+  const currentCreamer = ref("No Cream"); // Default selection
 
-const syrups = ref(["No Syrup", "Vanilla", "Caramel", "Hazelnut"]);
-const currentSyrup = ref("No Syrup"); // Default selection
-
-
+  const syrups = ref(["No Syrup", "Vanilla", "Caramel", "Hazelnut"]);
+  const currentSyrup = ref("No Syrup"); // Default selection
 </script>
 
 <style lang="scss">
-body,
-html {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: #6e4228;
-  background: linear-gradient(to bottom, #6e4228 0%, #956f5a 100%);
-}
-ul {
-  list-style: none;
-  margin: 10px 0; // Adds vertical space between lists
-}
+  body, html {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #6e4228;
+    background: linear-gradient(to bottom, #6e4228 0%, #956f5a 100%);
+  }
+
+  ul {
+    list-style: none;
+    margin: 10px 0; // Adds vertical space between lists
+  }
+
+  label {
+    margin-left: 5px; 
+  }
 </style>
