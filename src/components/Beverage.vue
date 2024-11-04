@@ -4,10 +4,10 @@
     <Hot v-else />
     <Contents>
       <template v-slot:top>
-        <Creamer :creamer="creamer" />
+        <Creamer v-if="creamer !== 'No Cream'" :creamer="creamer" />
       </template>
       <template v-slot:mid>
-        <Syrup :syrup="syrup" />
+        <Syrup v-if="syrup !== 'No Syrup'" :syrup="syrup" />
       </template>
       <template v-slot:bottom>
         <Base :beverage="beverage" />
